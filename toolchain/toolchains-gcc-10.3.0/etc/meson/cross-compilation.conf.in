@@ -1,0 +1,32 @@
+# Note: Buildroot's and Meson's terminologies differ about the meaning
+# of 'build', 'host' and 'target':
+# - Buildroot's 'host' is Meson's 'build'
+# - Buildroot's 'target' is Meson's 'host'
+
+[binaries]
+c = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/bin/aarch64-buildroot-linux-gnu-gcc'
+cpp = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/bin/aarch64-buildroot-linux-gnu-g++'
+ar = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/bin/aarch64-buildroot-linux-gnu-ar'
+strip = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/bin/aarch64-buildroot-linux-gnu-strip'
+pkgconfig = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/bin/pkgconf'
+g-ir-compiler = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/aarch64-buildroot-linux-gnu/sysroot/usr/bin/g-ir-compiler'
+g-ir-scanner = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/aarch64-buildroot-linux-gnu/sysroot/usr/bin/g-ir-scanner'
+
+[built-in options]
+c_args = ['-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-Os', '-g0', '-D_FORTIFY_SOURCE=1'@PKG_TARGET_CFLAGS@]
+c_link_args = [@PKG_TARGET_CFLAGS@]
+cpp_args = ['-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-Os', '-g0', '-D_FORTIFY_SOURCE=1'@PKG_TARGET_CFLAGS@]
+cpp_link_args = [@PKG_TARGET_CFLAGS@]
+wrap_mode = 'nodownload'
+
+[properties]
+needs_exe_wrapper = true
+sys_root = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/aarch64-buildroot-linux-gnu/sysroot'
+pkg_config_libdir = '/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/aarch64-buildroot-linux-gnu/sysroot/usr/lib/pkgconfig:/builds/bootlin/toolchains-builder/build/aarch64--glibc--stable-2021.11-1/aarch64-buildroot-linux-gnu/sysroot/usr/share/pkgconfig'
+pkg_config_static = 'false'
+
+[host_machine]
+system = 'linux'
+cpu_family = 'aarch64'
+cpu = 'cortex-a53'
+endian = 'little'
